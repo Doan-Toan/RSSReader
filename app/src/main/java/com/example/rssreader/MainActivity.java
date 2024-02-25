@@ -12,7 +12,7 @@ import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
     String title[] = {
-            "1. Proteins",
+            "1. Thể thao",
             "2. Amino Acids",
             "3. Grains and Starches",
             "4. Fibers and Legumes",
