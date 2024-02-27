@@ -63,12 +63,7 @@ public class ReaderActivity extends AppCompatActivity {
         mediaDes = new ArrayList<String>();
         lvRSS = findViewById(R.id.lvRSS);
         pos = getIntent().getIntExtra("position",0);
-        lvRSS.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                alertDialogCreate(position);
-            }
-        });
+        lvRSS.setOnItemClickListener((parent, view, position, id) -> alertDialogCreate(position));
         new ProcessInBackground().execute();
     }
 
@@ -83,12 +78,7 @@ public class ReaderActivity extends AppCompatActivity {
         txtTitle.setText(titles.get(pos));
         txtDes.setText(descriptions.get(pos));
         txtMedia.setText(mediaDes.get(pos));
-        builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        });
+        builder.setNegativeButton("Close", (dialogInterface, i) -> dialogInterface.dismiss());
         builder.setPositiveButton("More", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
