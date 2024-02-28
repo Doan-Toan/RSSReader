@@ -12,16 +12,14 @@ import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
     String title[] = {
-            "1. Thể thao",
-            "2. Amino Acids",
-            "3. Grains and Starches",
-            "4. Fibers and Legumes",
-            "5. Vitamins",
-            "6. Minerals",
-            "7. Nutraceuticals",
-            "8. Processing functional ingredients",
-            "9. Fats and Oils",
-            "10. Preservatives"
+            "1. Thế Giới",
+            "2. Thể Thao",
+            "3. Gia Đình",
+            "4. Kinh Doanh",
+            "5. Giải Trí",
+            "6. Xe",
+            "7. Truyện Cười",
+            "8. Số Hóa"
     };
 
     @Override

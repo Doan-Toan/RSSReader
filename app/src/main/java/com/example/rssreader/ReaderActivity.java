@@ -41,15 +41,13 @@ public class ReaderActivity extends AppCompatActivity {
     Integer pos;
     String urls[] = {
             "https://vnexpress.net/rss/the-thao.rss",
-            "https://www.petfoodindustry.com/rss/topic/293-amino-acids",
-            "https://www.petfoodindustry.com/rss/topic/294-grains-and-starches",
-            "https://www.petfoodindustry.com/rss/topic/295-fibers-and-legumes",
-            "https://www.petfoodindustry.com/rss/topic/296-vitamins",
-            "https://www.petfoodindustry.com/rss/topic/297-minerals",
-            "https://www.petfoodindustry.com/rss/topic/298-nutraceuticals",
-            "https://www.petfoodindustry.com/rss/topic/299-processing-functional-ingredients",
-            "https://www.petfoodindustry.com/rss/topic/300-fats-and-oils",
-            "https://www.petfoodindustry.com/rss/topic/301-preservatives"
+            "https://vnexpress.net/rss/the-gioi.rss",
+            "https://vnexpress.net/rss/gia-dinh.rss",
+            "https://vnexpress.net/rss/kinh-doanh.rss",
+            "https://vnexpress.net/rss/giai-tri.rss",
+            "https://vnexpress.net/rss/oto-xe-may.rss",
+            "https://vnexpress.net/rss/cuoi.rss",
+            "https://vnexpress.net/rss/so-hoa.rss"
     };
 
     @Override
@@ -63,7 +61,12 @@ public class ReaderActivity extends AppCompatActivity {
         mediaDes = new ArrayList<String>();
         lvRSS = findViewById(R.id.lvRSS);
         pos = getIntent().getIntExtra("position",0);
-        lvRSS.setOnItemClickListener((parent, view, position, id) -> alertDialogCreate(position));
+        lvRSS.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                alertDialogCreate(position);
+            }
+        });
         new ProcessInBackground().execute();
     }
 
@@ -73,12 +76,17 @@ public class ReaderActivity extends AppCompatActivity {
         builder.setView(dialogView);
         TextView txtTitle = dialogView.findViewById(R.id.txtTitle);
         TextView txtDes = dialogView.findViewById(R.id.txtDes);
-        TextView txtMedia = dialogView.findViewById(R.id.txtMedia);
+        //TextView txtMedia = dialogView.findViewById(R.id.txtMedia);
         ImageView img = dialogView.findViewById(R.id.picture);
         txtTitle.setText(titles.get(pos));
         txtDes.setText(descriptions.get(pos));
-        txtMedia.setText(mediaDes.get(pos));
-        builder.setNegativeButton("Close", (dialogInterface, i) -> dialogInterface.dismiss());
+        //txtMedia.setText(mediaDes.get(pos));
+        builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
         builder.setPositiveButton("More", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -140,17 +148,16 @@ public class ReaderActivity extends AppCompatActivity {
                         }
                         else if(xpp.getName().equalsIgnoreCase("description")){
                             if(insideItem) {
-                                descriptions.add(xpp.nextText());
-                            }
-                        }
-                        else if(xpp.getName().equalsIgnoreCase("media:content")){
-                            if(insideItem){
-                                imgUrls.add(xpp.getAttributeValue(null,"url"));
-                            }
-                        }
-                        else if(xpp.getName().equalsIgnoreCase("media:description")){
-                            if(insideItem){
-                                mediaDes.add(xpp.nextText());
+                                String inputString =xpp.nextText();
+                                int srcIndex = inputString.indexOf("src=");
+                                int greaterThanIndex = inputString.indexOf(">", srcIndex);
+                                String part = inputString.substring(srcIndex + "src=".length() + 1, greaterThanIndex - 2);
+                                imgUrls.add(part);
+
+                                int breakIndex = inputString.indexOf("</br>");
+                                int dotIndex = inputString.indexOf(".", breakIndex);
+                                String part2 = inputString.substring(breakIndex + "</br>".length(), dotIndex);
+                                descriptions.add(part2);
                             }
                         }
                     }
@@ -186,8 +193,7 @@ public class ReaderActivity extends AppCompatActivity {
             builder.listener(new Picasso.Listener() {
                 @Override
                 public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception) {
-                    final String changedUrl = photoUrl.replace("http:", "https:");
-                    picasso.load(changedUrl).error(R.drawable.images).placeholder(R.drawable.images).into(imageView);
+                    picasso.load(photoUrl).error(R.drawable.images).placeholder(R.drawable.images).into(imageView);
                 }
             });
             Picasso picasso = builder.build();
