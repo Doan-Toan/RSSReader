@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/txtTitle"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="TextView"
         android:textSize="25dp"
@@ -18,7 +18,7 @@
         android:textStyle="bold|italic"/>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:background="@color/purple_200"/>
@@ -26,21 +26,19 @@
     <TextView
         android:id="@+id/txtDes"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="20dp"
         android:textStyle="bold|italic"/>
 
 
-        <ImageView
-            android:id="@+id/picture"
-            android:layout_width="400dp"
-            android:layout_height="300dp"
-            android:layout_weight="2"
-            tools:srcCompat="@tools:sample/avatars"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:scaleType="fitXY"/>
-
+    <ImageView
+        android:id="@+id/picture"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="50dp"
+        android:layout_weight="2"
+        android:scaleType="fitXY"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </LinearLayout>
