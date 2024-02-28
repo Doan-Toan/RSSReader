@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -40,13 +41,13 @@ public class ReaderActivity extends AppCompatActivity {
     ArrayList<String> mediaDes;
     Integer pos;
     String urls[] = {
-            "https://vnexpress.net/rss/the-thao.rss",
-            "https://vnexpress.net/rss/the-gioi.rss",
+            "https://vnexpress.net/rss/tin-noi-bat.rss",
+            "https://vnexpress.net/rss/khoa-hoc.rss",
             "https://vnexpress.net/rss/gia-dinh.rss",
             "https://vnexpress.net/rss/kinh-doanh.rss",
             "https://vnexpress.net/rss/giai-tri.rss",
-            "https://vnexpress.net/rss/oto-xe-may.rss",
-            "https://vnexpress.net/rss/cuoi.rss",
+            "https://vnexpress.net/rss/the-gioi.rss",
+            "https://vnexpress.net/rss/the-gioi.rss",
             "https://vnexpress.net/rss/so-hoa.rss"
     };
 

@@ -12,13 +12,13 @@ import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
     String title[] = {
-            "1. Thế Giới",
-            "2. Thể Thao",
+            "1. Tin Nổi Bật",
+            "2. Khoa Học",
             "3. Gia Đình",
             "4. Kinh Doanh",
             "5. Giải Trí",
-            "6. Xe",
-            "7. Truyện Cười",
+            "6. Thế Giới",
+            "7. Giáo dục - du học",
             "8. Số Hóa"
     };
 
